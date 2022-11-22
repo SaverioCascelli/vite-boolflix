@@ -3,6 +3,7 @@ import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import {store} from './data/store';
 import axios from 'axios';
+import { ITERATE_KEY } from '@vue/reactivity';
 
 export default{
     name:'App',
@@ -21,13 +22,14 @@ export default{
             axios.get(url,{
                 params:{
                     api_key:store.apiKey,
-                    query: search
+                    query: search,
+                    language: 'it',
                 }
             })
             .then(api => {
                 let arrObj = {
                     type: typeOfSearch,
-                    resultsArr : api.data
+                    resultsArr : api.data,
                 }
                 store.apiArr.push(arrObj)
                 console.log(store.apiArr);
