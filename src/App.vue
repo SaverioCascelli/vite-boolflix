@@ -16,15 +16,16 @@ export default{
         AppMain,
     },
     methods:{
-        searchApi(string){
-            axios.get(store.apiFilmUrl,{
+        searchApi(search,whatToSearch){
+            let url = store.baseApiUrl + whatToSearch + '?';
+            axios.get(url,{
                 params:{
-                    query: string
+                    api_key:store.apiKey,
+                    query: search
                 }
             })
             .then(api => {
                 store.apiArr = api.data;
-                console.log(store.apiArr);
             })
     }
     }

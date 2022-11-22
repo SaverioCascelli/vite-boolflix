@@ -35,6 +35,9 @@ export default {
 @use "../style/general.scss" as *;
 
 ul{
+    .fi{
+        z-index: 20;
+    }
     .flag-wrap{
         z-index: 4;
         position: relative;
