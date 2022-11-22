@@ -1,10 +1,14 @@
 <script>
+import CardMain from './CardMain.vue';
 
 import convertInLenguage from '../mixin/convertInLenguage';
 import genImgUrl from '../mixin/genImgUrl';
 import getStarReview from '../mixin/getStarReview';
 export default {
     name: 'sectionMain',
+    components:{
+        CardMain,
+    },
     props:{
         typeTitle: String,
         resultsArr: Object,
@@ -17,8 +21,16 @@ export default {
  
 <template>
     
-        <section>
+    <section>
         <h2>{{typeTitle}}</h2>
+        
+
+        <CardMain
+        v-for="(element) in resultsArr.results"
+        :key="element.id"
+        :cardInfo="element"
+        />
+        <!--
         <div v-for="(element) in resultsArr.results" :key="element.id">
             <ul>
                 <li><h4>{{element.title || element.name}}</h4></li>  
@@ -31,10 +43,11 @@ export default {
                     <span :class="'fi ' + convertInLenguage(element.original_language)"></span>
                     <span class="text-leng">{{element.original_language}}</span>
                 </div></li>
-                <li>voto: <div class="d-inline-block" v-html="getStarReview(element.vote_average)"></div></li>
+                <li>voto: <div class="d-inline-block " v-html="getStarReview(element.vote_average)"></div></li>
             
             </ul>
         </div>
+    -->
     </section>
   
 </template>

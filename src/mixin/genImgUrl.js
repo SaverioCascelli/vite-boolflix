@@ -2,7 +2,7 @@ export default {
     data() {
         return {
             imgBeginUrl: 'https://image.tmdb.org/t/p/',
-            imgSize: 'w154/'
+            imgSize: 'w1280/'
         }
     },
     methods: {

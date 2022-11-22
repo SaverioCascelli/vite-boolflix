@@ -15,8 +15,8 @@ export default {
 </script>
 
 <template>
-    <main>
-        <sectionsMain
+    <main class="container-fluid">
+        <sectionsMain class="row flex-wrap"
         v-for="(element, index) in store.apiArr"
         v-show="element.resultsArr.results.length > 0"
         :key="index"

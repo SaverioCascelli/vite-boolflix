@@ -61,7 +61,7 @@ export default{
 </script>
 
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid px-5 py-3">
         <div class="row">
             <div class="col">
                 <AppHeader @search="searchSwitchCase"/>
@@ -79,5 +79,6 @@ export default{
 
 <style lang="scss">
 @use './style/general.scss';
+
 
 </style>

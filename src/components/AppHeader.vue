@@ -41,6 +41,13 @@ export default {
   
 </template>
 
-<style>
+<style lang="scss" scoped>
+
+header{
+    height: 175px;
+}
+.logo{
+    width: 120px;
+}
 
 </style>
