@@ -2,6 +2,7 @@
 
 import convertInLenguage from '../mixin/convertInLenguage';
 import genImgUrl from '../mixin/genImgUrl';
+import getStarReview from '../mixin/getStarReview';
 export default {
     name: 'sectionMain',
     props:{
@@ -9,7 +10,8 @@ export default {
         resultsArr: Object,
     },
     mixins: [convertInLenguage,
-            genImgUrl]
+            genImgUrl,
+            getStarReview]
 }
 </script>
  
@@ -19,8 +21,9 @@ export default {
         <h2>{{typeTitle}}</h2>
         <div v-for="(element) in resultsArr.results" :key="element.id">
             <ul>
-                <li><h4>{{element.title || element.name}}</h4></li>
-                <li><div class="img-ca">
+                <li><h4>{{element.title || element.name}}</h4></li>  
+                <li
+                :class="{'d-none': !element.poster_path}"><div class="img-ca">
                     <img :src="genImgUrl(element.poster_path)" :alt='element.title  || element.name'>
                 </div></li>
                 <li>Original title: {{element.original_title || element.original_name}}</li>
@@ -28,7 +31,7 @@ export default {
                     <span :class="'fi ' + convertInLenguage(element.original_language)"></span>
                     <span class="text-leng">{{element.original_language}}</span>
                 </div></li>
-                <li>voto: {{element.vote_average}}</li>
+                <li>voto: <div class="d-inline-block" v-html="getStarReview(element.vote_average)"></div></li>
             
             </ul>
         </div>
