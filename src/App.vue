@@ -17,7 +17,7 @@ export default{
     },
     methods:{
         searchApi(string){
-            axios.get(store.apiUrl,{
+            axios.get(store.apiFilmUrl,{
                 params:{
                     query: string
                 }
