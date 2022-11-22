@@ -1,13 +1,15 @@
 <script>
 
-import convertInLenguage from '../mixin/convertInLenguage'
+import convertInLenguage from '../mixin/convertInLenguage';
+import genImgUrl from '../mixin/genImgUrl';
 export default {
     name: 'sectionMain',
     props:{
         typeTitle: String,
         resultsArr: Object,
     },
-    mixins: [convertInLenguage]
+    mixins: [convertInLenguage,
+            genImgUrl]
 }
 </script>
  
@@ -18,6 +20,9 @@ export default {
         <div v-for="(element) in resultsArr.results" :key="element.id">
             <ul>
                 <li><h4>{{element.title || element.name}}</h4></li>
+                <li><div class="img-ca">
+                    <img :src="genImgUrl(element.poster_path)" :alt='element.title  || element.name'>
+                </div></li>
                 <li>Original title: {{element.original_title || element.original_name}}</li>
                 <li >lingua: <div class="flag-wrap">
                     <span :class="'fi ' + convertInLenguage(element.original_language)"></span>

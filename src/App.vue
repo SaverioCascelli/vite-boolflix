@@ -17,8 +17,8 @@ export default{
         AppMain,
     },
     methods:{
-        searchApi(search,typeOfSearch){
-            let url = store.baseApiUrl + typeOfSearch + '?';
+        searchApi(search,typeOfMedia){
+            let url = store.baseApiUrl + typeOfMedia + '?';
             axios.get(url,{
                 params:{
                     api_key:store.apiKey,
@@ -28,7 +28,7 @@ export default{
             })
             .then(api => {
                 let arrObj = {
-                    type: typeOfSearch,
+                    type: typeOfMedia,
                     resultsArr : api.data,
                 }
                 store.apiArr.push(arrObj)

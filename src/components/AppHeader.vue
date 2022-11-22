@@ -12,7 +12,7 @@ export default {
         emitNormalizeString(){
             this.searchString = this.searchString.trim();
             this.searchString = this.searchString.replace(/ +(?= )/g,'');
-            this.$emit('search',this.searchString,'movie');
+            this.$emit('search',this.searchString,'both');
         },
         
     }
