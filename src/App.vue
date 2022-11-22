@@ -16,8 +16,8 @@ export default{
         AppMain,
     },
     methods:{
-        searchApi(search,whatToSearch){
-            let url = store.baseApiUrl + whatToSearch + '?';
+        searchApi(search,typeOfSearch){
+            let url = store.baseApiUrl + typeOfSearch + '?';
             axios.get(url,{
                 params:{
                     api_key:store.apiKey,
@@ -25,11 +25,36 @@ export default{
                 }
             })
             .then(api => {
-                store.apiArr = api.data;
+                let arrObj = {
+                    type: typeOfSearch,
+                    resultsArr : api.data
+                }
+                store.apiArr.push(arrObj)
+                console.log(store.apiArr);
             })
+        },
+        searchSwitchCase(search,searchBy){
+            store.apiArr = [];
+            switch (searchBy){
+                case 'tv':
+                    this.searchApi(search,'tv');
+                    break;
+                case 'movie':
+                    this.searchApi(search,'movie');
+                    break;
+                case 'both':
+                    this.searchApi(search,'movie');
+                    this.searchApi(search,'tv');
+                    break;
+                default:
+                    console.log('select something');
+                }
+        }
+    },
+    mounted(){
+       this.searchSwitchCase('matrix','both')
     }
-    }
-
+ 
 }
 </script>
 
@@ -37,7 +62,7 @@ export default{
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <AppHeader @search="searchApi"/>
+                <AppHeader @search="searchSwitchCase"/>
             </div>
         </div>
         <div class="row">

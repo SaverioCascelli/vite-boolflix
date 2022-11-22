@@ -12,7 +12,7 @@ export default {
         emitNormalizeString(){
             this.searchString = this.searchString.trim();
             this.searchString = this.searchString.replace(/ +(?= )/g,'');
-            this.$emit('search',this.searchString,'movie')
+            this.$emit('search',this.searchString,'movie');
         },
         
     }
@@ -31,7 +31,8 @@ export default {
                 <div class="col-4 col-input">
                     <div class="input-group">
                         <input type="text" class="form-control" v-model="searchString" placeholder="Cerca" aria-describedby="button-addon1">
-                        <button class="btn btn-outline-secondary" type="button" @click="emitNormalizeString()" id="button-addon1">Cerca</button>
+                        <button class="btn btn-outline-secondary" type="button" 
+                        @click="emitNormalizeString()" id="button-addon1">Cerca</button>
                     </div>
                 </div>
             </div>
