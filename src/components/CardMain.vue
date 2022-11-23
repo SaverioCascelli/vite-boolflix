@@ -45,11 +45,15 @@ export default {
     margin-bottom: 5%;
     overflow: hidden;
     width: calc(100% / 2 - 10px) !important;
+    transition:all 1s;
     //transform-origin: 0 50% ;
     &:hover{
         overflow: visible;
-        transform: scale(1.5);
-        z-index: 100;
+        animation: popup .2s linear ;
+        animation-fill-mode: forwards;
+        animation-delay: .3s;
+        //transform: scale(1.5);
+        //z-index: 100;
 
     }
     .img-wrap{
@@ -111,6 +115,10 @@ export default {
         border-radius: 50%;
         background: rgb(24, 24, 24);
         color: white;
+    }
+    @keyframes popup {
+        from{ z-index: 0; scale: 1;}
+        to{z-index: 50; scale: 1.5;}
     }
 
 }
