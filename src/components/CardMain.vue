@@ -14,7 +14,9 @@ export default {
 
 <template>
     <div class="sc-card col-auto p-0"
-    :class="{'d-none': !cardInfo.backdrop_path}" >
+    :class="{'d-none':!cardInfo.backdrop_path}" 
+    v-if="cardInfo.backdrop_path"
+    >
         <div class="img-wrap">
             <img :src="genImgUrl(cardInfo.backdrop_path)" alt="...">
             <p class="title">{{cardInfo.original_title || cardInfo.original_name}}</p>
@@ -47,14 +49,19 @@ export default {
     width: calc(100% / 2 - 10px) !important;
     transition:all 1s;
     //transform-origin: 0 50% ;
+   
+   &:nth-of-type(odd){
+    transform-origin: 0% 50%;
+  }
+
+  &:nth-of-type(2n){
+    transform-origin: 100% 50%;
+  }
     &:hover{
         overflow: visible;
         animation: popup .2s linear ;
         animation-fill-mode: forwards;
         animation-delay: .3s;
-        //transform: scale(1.5);
-        //z-index: 100;
-
     }
     .img-wrap{
         position: relative;
@@ -126,23 +133,51 @@ export default {
     .sc-card{
     width: calc(100% / 3 -  10px) !important;
   }
+    .sc-card:nth-of-type(3n+1){
+    transform-origin: 0% 50%;
+  }
+
+  .sc-card:nth-of-type(3n){
+    transform-origin: 100% 50%;
+  }
 }
 
 @media only screen and (min-width: 800px) {
     .sc-card{
     width: calc(100% / 4 - 10px) !important;
   }
+    .sc-card:nth-of-type(4n+1){
+    transform-origin: 0% 50%;
+  }
+
+  .sc-card:nth-of-type(4n){
+    transform-origin: 100% 50%;
+  }
 }
 
 @media only screen and (min-width: 1100px) {
     .sc-card{
     width: calc(100% / 5 - 10px) !important;
+  } 
+    .sc-card:nth-of-type(5n+1){
+    transform-origin: 0% 50%;
+  }
+
+  .sc-card:nth-of-type(5n){
+    transform-origin: 100% 50%;
   }
 }
 
 @media only screen and (min-width: 1400px) {
     .sc-card{
     width: calc(100% / 6 - 10px) !important;
+  } 
+  .sc-card:nth-of-type(6n+1){
+    transform-origin: 0% 50%;
+  }
+
+  .sc-card:nth-of-type(6n){
+    transform-origin: 100% 50%;
   }
 }
 
