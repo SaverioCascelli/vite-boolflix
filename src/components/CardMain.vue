@@ -178,12 +178,10 @@ export default {
     width: calc(100% / 6 - 10px) !important;
   } 
   .sc-card:nth-of-type(6n+1){
-    color: blue;
     transform-origin: 0% 50%;
   }
 
   .sc-card:nth-of-type(6n){
-    color: green;
     transform-origin: 100% 50%;
   }
 }

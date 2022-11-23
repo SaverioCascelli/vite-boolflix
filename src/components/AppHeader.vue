@@ -5,14 +5,14 @@ export default {
     name: 'AppHeader',
     data(){
         return{
-            searchString:"",
+            store,
         }
     },
     methods:{
         emitNormalizeString(){
-            this.searchString = this.searchString.trim();
-            this.searchString = this.searchString.replace(/ +(?= )/g,'');
-            this.$emit('search',this.searchString,'both');
+            store.searchString = store.searchString.trim();
+            store.searchString = store.searchString.replace(/ +(?= )/g,'');
+            this.$emit('search','both');
         },
         
     }
@@ -30,9 +30,9 @@ export default {
                 </div>
                 <div class="col-4 col-input">
                     <div class="input-group">
-                        <input type="text" class="form-control" v-model="searchString" placeholder="Cerca" aria-describedby="button-addon1">
+                        <input type="text" class="form-control" @keyup="emitNormalizeString()" v-model="store.searchString" placeholder="Cerca" aria-describedby="button-addon1">
                         <button class="btn btn-outline-secondary" type="button" 
-                        @click="emitNormalizeString()" id="button-addon1">Cerca</button>
+                        @click="emitNormalizeString()"  id="button-addon1">Cerca</button>
                     </div>
                 </div>
             </div>

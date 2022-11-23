@@ -17,15 +17,16 @@ export default{
         AppMain,
     },
     methods:{
-        searchApi(search,typeOfMedia){
+        searchApi(typeOfMedia){
             let url = store.baseApiUrl + typeOfMedia + '?';
-            if (typeOfMedia === "trending"){
+            if (typeOfMedia === "trending" || store.searchString === ''){
                 url = 'https://api.themoviedb.org/3/trending/all/day';
             }
+            console.log(url);
             axios.get(url,{
                 params:{
                     api_key:store.apiKey,
-                    query: search,
+                    query: store.searchString,
                     language: 'it',
                 }
             })
@@ -38,27 +39,29 @@ export default{
                 console.log(store.apiArr);
             })
         },
-        searchSwitchCase(search,searchBy){
+        searchSwitchCase(searchBy){
             store.apiArr = [];
             switch (searchBy){
                 case 'tv':
-                    this.searchApi(search,'tv');
+                    this.searchApi('tv');
                     break;
                 case 'movie':
-                    this.searchApi(search,'movie');
+                    this.searchApi('movie');
                     break;
                 case 'both':
-                    this.searchApi(search,'movie');
-                    this.searchApi(search,'tv');
+                    if(store.searchString === ''){
+                        this.searchApi('trending');
+                        break;
+                    }
+                    this.searchApi('movie');
+                    this.searchApi('tv');
                     break;
-                case 'trending':
-                    this.searchApi('','trending');
-                    break;
-                case '':
-                    this.searchApi('','trending');
+                case 'trending' || '':
+                    this.searchApi('trending');
                     break;
                 default:
-                    console.log('select something');
+                    this.searchApi('trending');
+                    break;
                 }
         }
     },
@@ -77,8 +80,11 @@ export default{
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div v-if="store.apiArr.length > 0" class="col">
                 <AppMain/>
+            </div>
+            <div v-else> 
+                <p>loading...</p>
             </div>
         </div>
     </div>
