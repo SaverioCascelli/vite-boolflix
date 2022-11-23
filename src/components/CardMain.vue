@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-    <div class="sc-card col-auto p-0"
+    <div class="sc-card col-auto p-0" 
     :class="{'d-none':!cardInfo.backdrop_path}" 
     v-if="cardInfo.backdrop_path"
     >
@@ -50,13 +50,6 @@ export default {
     transition:all 1s;
     //transform-origin: 0 50% ;
    
-   &:nth-of-type(odd){
-    transform-origin: 0% 50%;
-  }
-
-  &:nth-of-type(2n){
-    transform-origin: 100% 50%;
-  }
     &:hover{
         overflow: visible;
         animation: popup .2s linear ;
@@ -129,7 +122,19 @@ export default {
     }
 
 }
-@media only screen and (min-width: 500px) {
+
+@media only screen and (max-width:499px){
+    
+    .sc-card:nth-of-type(odd){
+    transform-origin: 0% 50%;
+  }
+
+  .sc-card:nth-of-type(even){
+    transform-origin: 100% 50%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width:799px) {
     .sc-card{
     width: calc(100% / 3 -  10px) !important;
   }
@@ -142,7 +147,7 @@ export default {
   }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 800px) and (max-width:1099px) {
     .sc-card{
     width: calc(100% / 4 - 10px) !important;
   }
@@ -155,7 +160,7 @@ export default {
   }
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1100px) and (max-width:1399px) {
     .sc-card{
     width: calc(100% / 5 - 10px) !important;
   } 
@@ -173,10 +178,12 @@ export default {
     width: calc(100% / 6 - 10px) !important;
   } 
   .sc-card:nth-of-type(6n+1){
+    color: blue;
     transform-origin: 0% 50%;
   }
 
   .sc-card:nth-of-type(6n){
+    color: green;
     transform-origin: 100% 50%;
   }
 }

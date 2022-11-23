@@ -22,7 +22,7 @@ export default {
 <template>
     
     <section>
-        <h2>{{typeTitle}}</h2>
+        <h2 class="text-uppercase">{{typeTitle}}</h2>
         
 
         <CardMain
