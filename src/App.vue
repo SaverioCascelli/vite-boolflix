@@ -19,6 +19,9 @@ export default{
     methods:{
         searchApi(search,typeOfMedia){
             let url = store.baseApiUrl + typeOfMedia + '?';
+            if (typeOfMedia === "trending"){
+                url = 'https://api.themoviedb.org/3/trending/all/day';
+            }
             axios.get(url,{
                 params:{
                     api_key:store.apiKey,
@@ -48,13 +51,19 @@ export default{
                     this.searchApi(search,'movie');
                     this.searchApi(search,'tv');
                     break;
+                case 'trending':
+                    this.searchApi('','trending');
+                    break;
+                case '':
+                    this.searchApi('','trending');
+                    break;
                 default:
                     console.log('select something');
                 }
         }
     },
     mounted(){
-       this.searchSwitchCase('matrix','both')
+       this.searchSwitchCase('','trending')
     }
  
 }

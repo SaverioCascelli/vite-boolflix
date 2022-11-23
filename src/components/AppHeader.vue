@@ -5,7 +5,7 @@ export default {
     name: 'AppHeader',
     data(){
         return{
-            searchString:"matrix",
+            searchString:"",
         }
     },
     methods:{
